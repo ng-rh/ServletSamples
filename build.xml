@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="webcontainer.samples" default="help" basedir=".">
+
+    <!-- The following properties are only defaults.  They should be overriden on the command line with: -Duser=username -->
+    <property name="user" value="user1"/>        
+    <property name="password" value="security"/>
+    <property name="cellName" value="ndcell"/>
+    <property name="nodeName" value="node1"/>
+    <property name="serverName" value="server1"/>
+    
+    <!-- The following properties do not need to be overriden by the user -->
+	<condition property="ext" value=".bat">
+		<contains string="${os.name}" substring="Windows" casesensitive="false"/>
+	</condition>
+	<condition property="ext" value="" else=".sh">
+		<contains string="${os.name}" substring="OS/400" casesensitive="false"/>
+	</condition>
+    <property name="wsadmin.executable" value="${user.install.root}/bin/wsadmin${ext}"/>
+    <property name="was.plugins" location="${was.install.root}/plugins" />
+    <property name="lib.script" value="scripts/lib.py"/>
+    <property name="install.script" value="scripts/installAndStart.py"/>
+    <property name="uninstall.script" value="scripts/stopAndUninstall.py"/>
+    <property name="appName" value="WebcontainerSample"/>
+    <property name="earPath" value="installableApps/WebcontainerSample.ear"/>
+
+    <property name="dir.build"        location="build"/>
+    <property name="dir.classes"      location="${dir.build}/classes"/>
+    <property name="dir.src"          location="src/java"/>
+    <property name="dir.webcontent"   location="src/WebContent"/>
+    <property name="dir.earcontent"   location="src/EARContent"/>
+
+	<target name="printProperties">
+        <echoproperties/>
+	</target>
+    
+    <target name="help" description="Prints usage information of standard targets">
+       <echo>To build the sample, type: [PathOfWasInstall]\bin\ws_ant.[bat|sh] -f build.xml build</echo>
+       <echo>To install and start the sample, type: [PathOfWasInstall]\bin\ws_ant.[bat|sh] -f build.xml installAndStart -Duser=username -Dpassword=pass -DcellName=cell -DnodeName=node -DserverName=server</echo>
+       <echo>To stop and uninstall the sample, type: [PathOfWasInstall]\bin\ws_ant.[bat|sh] -f build.xml stopAndUninstall -Duser=username -Dpassword=pass -DcellName=cell -DnodeName=node -DserverName=server</echo>
+    </target>
+
+
+    <path id="ws.classpath">
+        <fileset dir="${was.plugins}">
+            <include name="*.jar" />
+        </fileset>
+    </path>
+
+    <target name="clean" description="Clean up the compiled tests and docs">
+        <delete dir="${dir.build}" />
+    </target>
+
+    <target name="compile" description="Builds the source for the component">
+        <mkdir dir="${dir.classes}"/>
+        <javac destdir="${dir.classes}">
+            <src>
+                <pathelement location="${dir.src}"/>
+            </src>
+            <classpath>
+                <path refid="ws.classpath"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="build" description="Builds external package for this component" depends="compile">
+        <!--build programmatic helper files-->
+		<!--no-op-->
+		<!--build async helper files-->
+		<!--no-op-->
+		<!--build webFragment helper files-->
+
+        <jar destfile="${dir.build}/SampleWebFragment.jar" update="false">
+            <fileset dir="${dir.classes}" includes="com/ibm/ws/sample/webFragmentJar/*.class"/>
+			<fileset dir="${dir.webcontent}/SampleWebFragment" includes="META-INF/web-fragment.xml"/>
+        </jar>
+		<!--build SCI helper files-->
+		<jar destfile="${dir.build}/SampleSCI.jar" update="false">
+            <fileset dir="${dir.classes}" includes="com/ibm/ws/sample/sciJar/*.class"/>
+			<fileset dir="${dir.webcontent}/SampleSCI" includes="META-INF/services/javax.servlet.ServletContainerInitializer"/>
+        </jar>
+		<!--build wars-->
+		<jar destfile="${dir.build}/SampleProgrammatic.war">
+            <zipfileset dir="${dir.classes}" prefix="WEB-INF/classes">
+                <include name="com/ibm/ws/sample/programmatic/*.class"/>
+            </zipfileset>
+            <!--<fileset dir="${dir.webcontent}/SampleProgrammatic"/>-->
+        </jar>
+		<jar destfile="${dir.build}/SampleAsyncContext.war">
+            <zipfileset dir="${dir.classes}" prefix="WEB-INF/classes">
+                <include name="com/ibm/ws/sample/async/*.class"/>
+            </zipfileset>
+            <!--<fileset dir="${dir.webcontent}/SampleAsyncContext"/>-->
+        </jar>
+		<jar destfile="${dir.build}/SampleServletContainerInitializer.war">
+            <zipfileset dir="${dir.classes}" prefix="WEB-INF/classes">
+                <include name="com/ibm/ws/sample/sci/*.class"/>
+            </zipfileset>
+			<zipfileset dir="${dir.build}" prefix="WEB-INF/lib">
+                <include name="SampleSCI.jar"/>
+            </zipfileset>
+            <!--<fileset dir="${dir.webcontent}/SampleSCI"/>-->
+        </jar>
+		<jar destfile="${dir.build}/SampleWebFragment.war">
+            <zipfileset dir="${dir.classes}" prefix="WEB-INF/classes">
+                <include name="com/ibm/ws/sample/webFragment/*.class"/>
+            </zipfileset>
+			<zipfileset dir="${dir.build}" prefix="WEB-INF/lib">
+                <include name="SampleWebFragment.jar"/>
+            </zipfileset>
+            <fileset dir="${dir.webcontent}/SampleWebFragment" includes="WEB-INF/web.xml"/>
+        </jar>
+		<!--build ear-->
+        <jar destfile="installableApps/WebcontainerSample.ear">
+            <!--<fileset dir="${dir.earcontent}"/>-->
+            <fileset dir="${dir.build}">
+                <include name="SampleProgrammatic.war"/>
+				<include name="SampleAsyncContext.war"/>
+				<include name="SampleServletContainerInitializer.war"/>
+				<include name="SampleWebFragment.war"/>
+            </fileset>
+        </jar>
+    </target>
+
+
+	<target name="installAndStart" description="Installs and starts the sample application">
+        <echo>Launching WsAdmin to install an App using ${install.script}</echo>
+        <exec executable="${wsadmin.executable}">
+            <arg value="-user"/>
+            <arg value="${user}"/>
+            <arg value="-password"/>
+            <arg value="${password}"/>
+            <arg value="-lang"/>
+            <arg value="jython"/>
+            <arg value="-profile"/>
+            <arg value="${lib.script}"/>
+            <arg value="-f"/>
+            <arg value="${install.script}"/>
+            <arg value="${cellName}"/>
+            <arg value="${nodeName}"/>
+            <arg value="${serverName}"/>
+            <arg value="${appName}"/>
+            <arg value="${earPath}"/>
+        </exec>
+	</target>
+
+    <target name="stopAndUninstall" description="Stops and uninstalls the sample application">
+        <echo>Launching WsAdmin to uninstall an App using ${uninstall.script}</echo>
+        <exec executable="${wsadmin.executable}">
+            <arg value="-user"/>
+            <arg value="${user}"/>
+            <arg value="-password"/>
+            <arg value="${password}"/>
+            <arg value="-lang"/>
+            <arg value="jython"/>
+            <arg value="-profile"/>
+            <arg value="${lib.script}"/>
+            <arg value="-f"/>
+            <arg value="${uninstall.script}"/>
+            <arg value="${cellName}"/>
+            <arg value="${nodeName}"/>
+            <arg value="${serverName}"/>
+            <arg value="${appName}"/>
+        </exec>
+    </target>
+
+</project>

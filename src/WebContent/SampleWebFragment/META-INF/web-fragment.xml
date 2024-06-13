@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-fragment>
+  <servlet>
+    <description></description>
+    <display-name>DeclaredServletInWebFragment</display-name>
+    <servlet-name>DeclaredServletInWebFragment</servlet-name>
+    <servlet-class>com.ibm.ws.sample.webFragmentJar.DeclaredServletInWebFragment</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeclaredServletInWebFragment</servlet-name>
+    <url-pattern>/DeclaredServletInWebFragment</url-pattern>
+  </servlet-mapping>
+</web-fragment>

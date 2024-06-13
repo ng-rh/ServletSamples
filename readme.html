@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en-us" xml:lang="en-us">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="security" content="public"/>
+<meta name="Robots" content="index,follow"/>
+<meta http-equiv="PICS-Label" content='(PICS-1.1 "http://www.icra.org/ratingsv02.html" l gen true r (cz 1 lz 1 nz 1 oz 1 vz 1) "http://www.rsac.org/ratingsv01.html" l gen true r (n 0 s 0 v 0 l 0) "http://www.classify.org/safesurf/" l gen true r (SS~~000 1))' />
+<meta name="DC.Type" content="task"/>
+<meta name="DC.Title" content="Servlet 3.0 samples"/>
+<meta name="abstract" content="Servlet 3.0 samples demonstrates some new servlet 3.0 functionality.  See how to programmatically add servlets, configure web-fragments, use an asynchronous servlet, or use a ServletContainerInitializer with these samples."/>
+<meta name="description" content="Servlet 3.0 Samples demonstrates some new servlet 3.0 functionality.  See how to programmatically add servlets, configure web-fragments, use an asynchronous servlet, or use a ServletContainerInitializer with these samples."/>
+<meta name="DC.Coverage" content="sample"/>
+<meta name="DC.Relation" scheme="URI" content="page_name.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www.doowop.com/index.html"/>
+<meta name="DC.Relation" scheme="URI" content="http://www14.software.ibm.com/webapp/wsbroker/redirect?version=matt&amp;product=was-nd-dist&amp;topic=topicID"/>
+<meta name="DC.Audience.Job" content="programming"/>
+<meta name="DC.Audience.Type" content="programmer"/>
+
+<meta name="prodname" content="IBM WebSphere Application Server"/>
+<meta name="version" content="matt"/>
+<meta name="component" content="was-base was-express was-nd"/>
+<meta name="platform" content="dist iseries zos"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="sampletask"/>
+<meta name="DC.Language" content="en-us"/>
+<!-- All rights reserved. Licensed Materials Property of IBM -->
+<!-- US Government Users Restricted Rights -->
+<!-- Use, duplication or disclosure restricted by -->
+<!-- GSA ADP Schedule Contract with IBM Corp. -->
+<link rel="stylesheet" type="text/css" href="style/samples_readme.css"/>
+<title>Servlet 3.0 Samples</title>
+</head>
+<body id="sampletask"><a name="sampletask"><!-- --></a>
+<div id="sample_header">
+
+	<img class="sample_header_icon_left" alt="WebSphere software logo" src="images/WS_BrandMark_18x120.png"/>
+	<img class="sample_header_icon_right" alt="IBM Logo" src="images/ibm-logo-white.gif"/>
+</div>
+
+
+<h1 class="topictitle1">Servlet 3.0 Samples</h1>
+
+
+<div>
+	<p>Servlet 3.0 Samples demonstrates some new Servlet 3.0 functionality.  See how to programmatically add servlets, configure web-fragments, use an asynchronous servlet, or use a ServletContainerInitializer.</p>
+
+
+	<div class="section">
+		<p>Here is what you should know about this sample
+		before proceeding.</p>
+	</div>
+
+	<div class="section">
+		<h4 class="sectiontitle">
+		Time required to set up and configure this sample
+		</h4>
+
+		<dd>
+			<p>5 minutes</p>
+		</dd>
+	</div>
+
+	<div class="section">
+		<h4 class="sectiontitle">
+		Prerequisites for use</h4>
+
+		<dd>
+				<div class="p">
+					<ol>
+						<li>WebSphere Application Server. This sample was tested most recently with Version 8.0 of the product.</li>
+					</ol>
+
+			</div>
+		</dd>
+	</div>
+
+	<div class="section">
+		<h4 class="sectiontitle">
+		Copyright license</h4>
+
+			<p>COPYRIGHT LICENSE: This information contains sample code provided in source code form. You may copy, modify, and distribute these sample programs in any form without payment to IBM for the purposes of developing, using, marketing or distributing application programs conforming to the application programming interface for the operating platform for which the sample code is written. Notwithstanding anything to the contrary, IBM PROVIDES THE SAMPLE SOURCE CODE ON AN "AS IS" BASIS AND IBM DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, ANY IMPLIED WARRANTIES OR CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND ANY WARRANTY OR CONDITION OF NON-INFRINGEMENT. IBM SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR OPERATION OF THE SAMPLE SOURCE CODE. IBM HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS OR MODIFICATIONS TO THE SAMPLE SOURCE CODE.</p>
+
+	</div>
+
+
+</div>
+
+<div class="section">
+	<h4 class="sectiontitle">
+	About this task</h4>
+
+	<p>The following key phrases are associated with this sample: 	Servlet 3.0, web-fragment, asynchronous servlet, ServletContainerInitializer</p>
+
+	<div class="p">See the following more detailed description of the sample:
+		<dl>
+			<dt class="dlterm">SampleProgrammatic.war</dt>
+				<dd><p>This module shows how to programmaticaly add servlets, filters, and listeners, or all three objects.</p>
+				<p>For more information, see <a href="http://www14.software.ibm.com/webapp/wsbroker/redirect?version=matt&amp;product=was-nd-dist&amp;topic=cweb_servlet30configmethods" target="_blank">Servlet 3.0 programmatic configuration</a>.</p>
+				</dd>
+
+			<dt class="dlterm">SampleAsyncContext.war</dt>
+				<dd><p>This module shows how to use an asynchronous servlet to process a long running request and then dispatch back to write out the response.</p>
+				<p>For more information, see <a href="http://www14.software.ibm.com/webapp/wsbroker/redirect?version=matt&amp;product=was-nd-dist&amp;topic=rweb_consid" target="_blank">Java Servlet 3.0 considerations</a>.</p>
+				</dd>
+
+			<dt class="dlterm">SampleWebFragment.war</dt>
+				<dd><p>This module shows how to include a JAR file that contains a web-fragment.xml file.</p>
+				<p>For more information, see <a href="http://www14.software.ibm.com/webapp/wsbroker/redirect?version=matt&amp;product=was-nd-dist&amp;topic=cweb_webfragments" target="_blank">Web fragments</a>.</p>
+				</dd>
+
+			<dt class="dlterm">SampleServletContainerInitializer.war</dt>
+				<dd><p>This module shows how to use a ServletContainerInitializer to help initialize the application.</p>
+				<p>For more information, see <a href="http://www14.software.ibm.com/webapp/wsbroker/redirect?version=matt&amp;product=was-nd-dist&amp;topic=cweb_servlet30configmethods" target="_blank">ServletContainerInitializer</a>.</p>
+				</dd>
+		</dl>
+	</div>
+
+</div>
+
+<div class="section">
+	<h4 class="sectiontitle">
+
+	Procedure </h4>
+
+	<ul>
+		<p class="subsection">
+		Re-build the sample (optional)</p>
+		<ol>
+			<li>
+				<span>Go to the directory where you extracted the sample.</span>
+			</li>
+
+			<li>
+				<span>Then, run [PathOfWasInstall]\bin\ws_ant.[bat|sh] -f build.xml build</span>
+			</li>
+		</ol>
+
+		<p class="subsection">
+		Install the sample</p>
+		<ol>
+			<li>
+				<span>Go to the directory where you extracted the sample.</span>
+			</li>
+			<li>
+				<span>Then, run [PathOfWasInstall]\bin\ws_ant.[bat|sh] -f build.xml installAndStart -Duser=username -Dpassword=pass -DcellName=cell -DnodeName=node -DserverName=server</span>
+			</li>
+			<li>
+				<span>If the above command fails, you should make sure that the server is up and running.  If it is and you have more than one profile installed, you may also want to verify that the command is using the profile that you expect it to use.  Either modify the default profile or use the profile's bin directory to run the ws_ant command.</span>
+			</li>
+		</ol>
+
+		<p class="subsection">
+		Run the sample</p>
+
+		<ol><li>Open the following URLs in a browser:
+		<ul>
+			<li>
+				<span>Hit http://server:port/SampleProgrammatic/Servlet1</span>
+			</li>
+			<li>
+				<span>Hit http://server:port/SampleProgrammatic/Servlet2</span>
+			</li>
+			<li>
+				<span>Hit http://server:port/SampleProgrammatic/Servlet3</span>
+			</li>
+			<li>
+				<span>Hit http://server:port/SampleAsyncContext/MainServlet</span>
+			</li>
+			<li>
+				<span>Hit http://server:port/SampleWebFragment/AnnotatedServletInWebFragment</span>
+			</li>
+			<li>
+				<span>Hit http://server:port/SampleWebFragment/DeclaredServletInWebFragment</span>
+			</li>
+			<li>
+				<span>Hit http://server:port/SampleWebFragment/DeclaredServletInWebXML</span>
+			</li>
+			<li>
+				<span>Hit http://server:port/SampleServletContainerInitializer/AnnotatedServlet</span>
+			</li>
+		</ul>
+		</li></ol>
+
+		</li>
+		<p class="subsection">
+		Uninstall the sample</p>
+
+		<ol>
+			<li>
+				<span>Go to the directory where you extracted the sample.</span>
+			</li>
+			<li>
+				<span>Then, run [PathOfWasInstall]\bin\ws_ant.[bat|sh] -f build.xml stopAndUninstall -Duser=username -Dpassword=pass -DcellName=cell -DnodeName=node -DserverName=server</span>
+			</li>
+			<li>
+				<span>If the above command fails, you should make sure that the server is up and running.  If it is and you have more than one profile installed, you may also want to verify that the command is using the profile that you expect it to use.  Either modify the default profile or use the profile's bin directory to run the ws_ant command.</span>
+			</li>
+		</ol>
+
+	</ul>
+</div>
+<div class="section">
+	<h4 class="sectiontitle">
+	  Results </h4>
+
+	<p>The following images show the
+	correctly running sample:</p>
+
+	<p><a href="images/Servlet1.jpg" alt="Programmatic Servlet1 Results">Programmatic Servlet1 Results</a></p>
+	<p><a href="images/Servlet2.jpg" alt="Programmatic Servlet2 Results">Programmatic Servlet2 Results</a></p>
+	<p><a href="images/Servlet3.jpg" alt="Programmatic Servlet3 Results">Programmatic Servlet3 Results</a></p>
+
+	<p><a href="images/Async.jpg" alt="Asynchronous Servlet Results">Asynchronous Servlet Results</a></p>
+
+	<p><a href="images/WebFragmentAnnotation.jpg" alt="WebFragment With Annotation Results">WebFragment With Annotation Results</a></p>
+	<p><a href="images/WebFragmentDeclared.jpg" alt="Declared Servlet With WebFragment Results">Declared Servlet With WebFragment Results</a></p>
+	<p><a href="images/WebFragmentNormalDeclared.jpg" alt="Declared Servlet Results">Declared Servlet Results</a></p>
+
+	<p><a href="images/SCI.jpg" alt="ServletContainerInitializer Results">ServletContainerInitializer Results</a></p>
+</div>
+
+
+
+<div class="section">
+	<p>If you would like to customize the applications, you can modify the classes, configuration files, or both.  Then re-run the build script.
+	If you would like to add a configuration file, make sure you modify the build.xml file to add the newly created file into the correct JAR, WAR, or EAR file.</p>
+
+</div>
+
+<div id="sample_header">
+   <!--The footer uses the same banner as the header  -->
+</div>
+
+</body>
+</html>
